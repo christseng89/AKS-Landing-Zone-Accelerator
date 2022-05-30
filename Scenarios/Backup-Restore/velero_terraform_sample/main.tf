@@ -36,7 +36,7 @@ data "azurerm_storage_account" "velero" {
 
  #Prepare Service principal used by velero/restric 
 data "azuread_service_principal" "velero_sp" {
-  display_name = "sp-velero-aks1"
+  display_name = "sp-velero-aks1-hoss"
 }
 
 #########################################
