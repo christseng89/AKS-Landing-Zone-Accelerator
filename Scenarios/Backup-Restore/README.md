@@ -69,8 +69,8 @@ az ad sp create-for-rbac --name sp-velero-aks1-hoss --role Reader --scopes /subs
 
 ```bash
 terraform init
-terraform plan
-terraform apply
+terraform plan -out tfplan
+terraform apply tfplan
 ```
 
 * Check that the install is successfull: 
@@ -119,14 +119,8 @@ terraform apply
   ```
   ```bash
   kubectl exec -it nginx-csi-disk-lrs -n csi-disk-lrs -- touch /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginx-csi-file-zrs -n csi-file-zrs -- touch /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginx-file-lrs -n file-lrs -- touch /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginxstatefulset-0 -n diskstatefulset -- touch /mnt/azuredisk/some-data-file.txt
   ```
 
@@ -141,14 +135,8 @@ terraform apply
   ```
   ```bash
   kubectl exec -it nginx-csi-disk-lrs -n csi-disk-lrs -- ls /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginx-csi-file-zrs -n csi-file-zrs -- ls /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginx-file-lrs -n file-lrs -- ls /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginxstatefulset-0 -n diskstatefulset -- ls /mnt/azuredisk/some-data-file.txt
   ```
 
@@ -213,14 +201,8 @@ terraform apply
   ```
   ```bash
   kubectl exec -it nginx-csi-disk-lrs -n csi-disk-lrs -- ls /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginx-csi-file-zrs -n csi-file-zrs -- ls /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginx-file-lrs -n file-lrs -- ls /mnt/azuredisk/some-data-file.txt
-  ```
-  ```bash
   kubectl exec -it nginxstatefulset-0 -n diskstatefulset -- ls /mnt/azuredisk/some-data-file.txt
   ```
   
