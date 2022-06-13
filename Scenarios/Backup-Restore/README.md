@@ -51,7 +51,7 @@ The Terraform code does the following:
 
 * Clone the AKS Accelerator repository: 
     ```bash
-    git clone https://github.com/Azure/AKS-Landing-Zone-Accelerator.git
+    git clone https://github.com/HoussemDellai/AKS-Landing-Zone-Accelerator.git
     ```
 
 * Navigate to the Backup & Restore directory:
@@ -62,7 +62,7 @@ cd AKS-Landing-Zone-Accelerator/Scenarios/Backup-Restore/velero_terraform_sample
 * Create the Service Principal, representing Velero, to perform backups & restores:
 
 ```bash
-az ad sp create-for-rbac --name sp-velero-aks1 --role Reader --scopes /subscriptions/{subscriptionId}
+az ad sp create-for-rbac --name sp-velero-aks1-hoss --role Reader --scopes /subscriptions/{subscriptionId}
 ```
 
 * Deploy the Terraform sample code:
