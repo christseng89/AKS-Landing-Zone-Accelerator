@@ -27,7 +27,7 @@ resource "kubernetes_secret" "velero" {
 resource "helm_release" "velero" {
   depends_on = [
     kubernetes_secret.velero,
-    kubernetes_namespace.velero]
+  kubernetes_namespace.velero]
   name       = "velero"
   chart      = "velero"
   repository = var.velero_chart_repository

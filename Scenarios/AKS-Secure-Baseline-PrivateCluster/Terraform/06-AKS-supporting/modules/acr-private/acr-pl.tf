@@ -21,7 +21,7 @@ resource "azurerm_private_endpoint" "acr-endpoint" {
   }
 
   private_dns_zone_group {
-    name = "acr-endpoint-zone"
+    name                 = "acr-endpoint-zone"
     private_dns_zone_ids = [var.private_zone_id]
   }
 }
@@ -31,7 +31,7 @@ output "acr_id" {
 }
 
 output "custom_dns_configs" {
-    value = azurerm_private_endpoint.acr-endpoint.custom_dns_configs
+  value = azurerm_private_endpoint.acr-endpoint.custom_dns_configs
 }
 
 # Variables

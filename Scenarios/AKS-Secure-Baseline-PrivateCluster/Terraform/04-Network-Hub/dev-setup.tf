@@ -35,9 +35,9 @@ module "create_linuxsserver" {
   location            = azurerm_resource_group.rg.location
   vnet_subnet_id      = azurerm_subnet.dev.id
 
-  server_name         = "server-dev-linux"
-  admin_username      = var.admin_username
-  admin_password      = var.admin_password
+  server_name    = "server-dev-linux"
+  admin_username = var.admin_username
+  admin_password = var.admin_password
 
 }
 

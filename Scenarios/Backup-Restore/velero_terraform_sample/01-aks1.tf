@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "aks_testvelero" {
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "primary-aks1"
-  location = var.region
+  location            = var.region
   resource_group_name = azurerm_resource_group.aks_testvelero.name
   dns_prefix          = "primaryaks1"
 
@@ -16,16 +16,16 @@ resource "azurerm_kubernetes_cluster" "aks" {
     name       = "default"
     node_count = 3
     vm_size    = "Standard_DS3_v2"
-    zones = ["1", "2", "3"]
+    zones      = ["1", "2", "3"]
   }
 
-#kubernetes_version = "1.22" 
+  #kubernetes_version = "1.22" 
 
-role_based_access_control_enabled = true
+  role_based_access_control_enabled = true
 
 
   identity {
-    type                      = "SystemAssigned"
+    type = "SystemAssigned"
   }
 
   network_profile {

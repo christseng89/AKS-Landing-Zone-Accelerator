@@ -6,7 +6,7 @@ terraform {
       version = ">= 2.1.0"
     }
     azurerm = {
-      source  = "hashicorp/azurerm"
+      source = "hashicorp/azurerm"
       #version = ">= 2.51"
       version = ">= 3.3.0"
     }
@@ -26,7 +26,7 @@ provider "azurerm" {
 }
 
 provider "kubernetes" {
-  alias = "aks-module"
+  alias                  = "aks-module"
   host                   = data.azurerm_kubernetes_cluster.aks.kube_config[0].host
   client_certificate     = base64decode(data.azurerm_kubernetes_cluster.aks.kube_config[0].client_certificate)
   client_key             = base64decode(data.azurerm_kubernetes_cluster.aks.kube_config[0].client_key)
@@ -45,7 +45,7 @@ provider "helm" {
 
 }
 provider "kubernetes" {
-  alias = "aksdr-module"
+  alias                  = "aksdr-module"
   host                   = data.azurerm_kubernetes_cluster.aks_dr.kube_config[0].host
   client_certificate     = base64decode(data.azurerm_kubernetes_cluster.aks_dr.kube_config[0].client_certificate)
   client_key             = base64decode(data.azurerm_kubernetes_cluster.aks_dr.kube_config[0].client_key)

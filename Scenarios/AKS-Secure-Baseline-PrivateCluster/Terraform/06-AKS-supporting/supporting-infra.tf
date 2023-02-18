@@ -19,7 +19,7 @@ module "create_acr" {
 # Deploy Azure Key Vault
 
 module "create_kv" {
-  source                   = "./modules/kv-private"
+  source = "./modules/kv-private"
 
   name                     = "kv${random_integer.deployment.result}-${var.prefix}"
   resource_group_name      = data.terraform_remote_state.existing-lz.outputs.lz_rg_name

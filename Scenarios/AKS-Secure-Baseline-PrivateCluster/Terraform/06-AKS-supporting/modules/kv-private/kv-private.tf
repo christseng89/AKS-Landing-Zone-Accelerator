@@ -28,17 +28,17 @@ resource "azurerm_private_endpoint" "kv-endpoint" {
   }
 
   private_dns_zone_group {
-    name = "kv-endpoint-zone"
+    name                 = "kv-endpoint-zone"
     private_dns_zone_ids = [var.private_zone_id]
   }
 }
 
 output "kv_id" {
-    value = azurerm_key_vault.key-vault.id
+  value = azurerm_key_vault.key-vault.id
 }
 
 output "key_vault_url" {
-  value       = azurerm_key_vault.key-vault.vault_uri
+  value = azurerm_key_vault.key-vault.vault_uri
 }
 
 

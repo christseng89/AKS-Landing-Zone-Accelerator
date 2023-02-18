@@ -3,32 +3,32 @@
 #############
 
 variable "region" {
-    default = "WestEurope"
+  default = "WestEurope"
 
 }
 
 variable "velero_namespace" {
-    default = "velero"
+  default = "velero"
 
 }
 
 variable "backups_rg_name" {
-    default = "backups-aks1"
+  default = "backups-aks1"
 
 }
 
 variable "backups_region" {
-    default = "NorthEurope"
+  default = "NorthEurope"
 
 }
 
 variable "backups_stracc_name" {
-    default = "backupsveleroaks1"
+  default = "backupsveleroaks1"
 
 }
 
 variable "backups_stracc_container_name" {
-    default = "velero"
+  default = "velero"
 
 }
 

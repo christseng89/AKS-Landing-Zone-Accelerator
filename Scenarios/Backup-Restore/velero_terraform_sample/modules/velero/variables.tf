@@ -26,32 +26,32 @@ variable "backups_stracc_container_name" {
 variable "velero_sp_tenantID" {
   description = "Tenant ID for service pricinpal used by velero/restic"
   type        = string
-  default = ""
+  default     = ""
 }
 
 variable "velero_sp_clientID" {
   description = "Client ID for service pricinpal used by velero/restic"
   type        = string
-  default = ""
+  default     = ""
 }
 
 variable "velero_default_volumes_to_restic" {
   description = "Use restic (file copy) by default to backup all volumes"
   type        = string
-  default = "true"
+  default     = "true"
 }
 
 
 variable "velero_restore_mode_only" {
   description = "Access mode for velero : backup/restore or restore only"
   type        = string
-  default = "false"
+  default     = "false"
 }
 
 variable "velero_sp_clientSecret" {
   description = "Client Secret for service pricinpal used by velero/restic"
   type        = string
-  default = ""
+  default     = ""
 }
 
 variable "aks_nodes_resource_group_name" {

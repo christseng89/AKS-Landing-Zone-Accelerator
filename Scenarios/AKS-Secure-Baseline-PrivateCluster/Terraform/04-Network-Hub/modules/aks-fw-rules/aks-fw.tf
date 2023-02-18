@@ -7,7 +7,7 @@ resource "azurerm_firewall_policy" "aks" {
 }
 
 output "fw_policy_id" {
-    value = azurerm_firewall_policy.aks.id
+  value = azurerm_firewall_policy.aks.id
 }
 
 # Rules Collection Group

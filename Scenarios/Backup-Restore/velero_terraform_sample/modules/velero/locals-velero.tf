@@ -10,7 +10,7 @@ EOF
 
   velero_default_values = {
     "restoreOnlyMode"                                           = try(var.velero_restore_mode_only, "false")
-    "defaultVolumesToRestic"                                           = try(var.velero_default_volumes_to_restic, "true")
+    "defaultVolumesToRestic"                                    = try(var.velero_default_volumes_to_restic, "true")
     "configuration.backupStorageLocation.bucket"                = try(var.backups_stracc_container_name, "")
     "configuration.backupStorageLocation.config.resourceGroup"  = try(var.backups_rg_name, "")
     "configuration.backupStorageLocation.config.storageAccount" = try(var.backups_stracc_name, "")
@@ -39,13 +39,13 @@ EOF
     #"initContainers[1].volumeMounts[0].mountPath"               = "/target"
     #"initContainers[1].volumeMounts[0].name"                    = "plugins"
     #"features"                                                  = "EnableCSI"
-    "image.repository"                                          = "velero/velero"
-    "image.tag"                                                 = "v1.8.1"
-    "image.pullPolicy"                                          = "IfNotPresent"
+    "image.repository" = "velero/velero"
+    "image.tag"        = "v1.8.1"
+    "image.pullPolicy" = "IfNotPresent"
   }
 
   velero_credentials = local.credentials
 
-  velero_values      = merge(local.velero_default_values, var.velero_values)
+  velero_values = merge(local.velero_default_values, var.velero_values)
 
 }

@@ -10,7 +10,7 @@ resource "azurerm_resource_group" "aks1_backups" {
 
 
 resource "azurerm_storage_account" "aks1_backups" {
-  name                     = "${local.random_stracc_name}"
+  name                     = local.random_stracc_name
   resource_group_name      = azurerm_resource_group.aks1_backups.name
   location                 = azurerm_resource_group.aks1_backups.location
   account_tier             = "Standard"

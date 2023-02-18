@@ -1,10 +1,10 @@
 # Application Gateway and Supporting Infrastructure
 
 resource "azurerm_subnet" "appgw" {
-  name                                             = "appgwSubnet"
-  resource_group_name                              = azurerm_resource_group.spoke-rg.name
-  virtual_network_name                             = azurerm_virtual_network.vnet.name
-  address_prefixes                                 = ["10.1.1.0/24"]
+  name                 = "appgwSubnet"
+  resource_group_name  = azurerm_resource_group.spoke-rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.1.1.0/24"]
   # enforce_private_link_endpoint_network_policies = false
 
 }

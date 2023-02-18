@@ -19,11 +19,11 @@ resource "azurerm_firewall" "firewall" {
 }
 
 resource "azurerm_public_ip" "firewall" {
-  name                 = "${azurerm_virtual_network.vnet.name}-firewall-pip"
-  resource_group_name  = azurerm_resource_group.rg.name
-  location             = azurerm_resource_group.rg.location
-  allocation_method    = "Static"
-  sku                  = "Standard"
+  name                = "${azurerm_virtual_network.vnet.name}-firewall-pip"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  allocation_method   = "Static"
+  sku                 = "Standard"
 }
 
 module "firewall_rules_aks" {

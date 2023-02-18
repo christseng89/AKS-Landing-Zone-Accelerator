@@ -7,13 +7,13 @@ data "azurerm_client_config" "current" {}
 data "azuread_client_config" "current" {}
 
 data "azurerm_kubernetes_cluster" "aks" {
-  depends_on = [azurerm_kubernetes_cluster.aks]
+  depends_on          = [azurerm_kubernetes_cluster.aks]
   name                = "primary-aks1"
   resource_group_name = "primary-aks1"
 }
 
 data "azurerm_kubernetes_cluster" "aks_dr" {
-  depends_on = [azurerm_kubernetes_cluster.aks_dr]
+  depends_on          = [azurerm_kubernetes_cluster.aks_dr]
   name                = "aks-dr"
   resource_group_name = "aks-dr"
 }
@@ -21,20 +21,20 @@ data "azurerm_kubernetes_cluster" "aks_dr" {
 
 data "azurerm_resource_group" "velero" {
   depends_on = [azurerm_resource_group.aks1_backups]
-  name  = var.backups_rg_name
+  name       = var.backups_rg_name
 }
 
 
 data "azurerm_storage_account" "velero" {
   depends_on = [azurerm_storage_account.aks1_backups]
   #name  = var.backups_stracc_name
-  name  = "${local.random_stracc_name}"
-  resource_group_name  = var.backups_rg_name
+  name                = local.random_stracc_name
+  resource_group_name = var.backups_rg_name
 }
 
 
 
- #Prepare Service principal used by velero/restric 
+#Prepare Service principal used by velero/restric 
 data "azuread_service_principal" "velero_sp" {
   display_name = "sp-velero-aks1-hoss"
 }
@@ -95,24 +95,24 @@ module "velero" {
     helm       = helm.aks-module
   }
 
-  backups_region       = var.backups_region
-  backups_rg_name           = var.backups_rg_name
+  backups_region  = var.backups_region
+  backups_rg_name = var.backups_rg_name
   #backups_stracc_name           = var.backups_stracc_name
-  backups_stracc_name  = "${local.random_stracc_name}"
-  backups_stracc_container_name           = var.backups_stracc_container_name
+  backups_stracc_name           = local.random_stracc_name
+  backups_stracc_container_name = var.backups_stracc_container_name
   aks_nodes_resource_group_name = data.azurerm_kubernetes_cluster.aks.node_resource_group
-  
-  velero_namespace        = var.velero_namespace
-  velero_chart_repository = var.velero_chart_repository
-  velero_chart_version    = var.velero_chart_version
-  velero_values           = var.velero_values
-  velero_restore_mode_only           = "false"
-  velero_default_volumes_to_restic    = "true" #use restic (file copy) by default for backups (no volume snapshots)
+
+  velero_namespace                 = var.velero_namespace
+  velero_chart_repository          = var.velero_chart_repository
+  velero_chart_version             = var.velero_chart_version
+  velero_values                    = var.velero_values
+  velero_restore_mode_only         = "false"
+  velero_default_volumes_to_restic = "true" #use restic (file copy) by default for backups (no volume snapshots)
 
 
-  velero_sp_tenantID = data.azurerm_client_config.current.tenant_id 
-  velero_sp_clientID = data.azuread_service_principal.velero_sp.application_id 
-  velero_sp_clientSecret = azuread_service_principal_password.velero_sp_password.value 
+  velero_sp_tenantID     = data.azurerm_client_config.current.tenant_id
+  velero_sp_clientID     = data.azuread_service_principal.velero_sp.application_id
+  velero_sp_clientSecret = azuread_service_principal_password.velero_sp_password.value
 }
 
 
@@ -128,22 +128,22 @@ module "veleroaksdr" {
     helm       = helm.aksdr-module
   }
 
-  backups_region       = var.backups_region
-  backups_rg_name           = var.backups_rg_name
+  backups_region  = var.backups_region
+  backups_rg_name = var.backups_rg_name
   #backups_stracc_name           = var.backups_stracc_name
-  backups_stracc_name  = "${local.random_stracc_name}"
-  backups_stracc_container_name           = var.backups_stracc_container_name
+  backups_stracc_name           = local.random_stracc_name
+  backups_stracc_container_name = var.backups_stracc_container_name
   aks_nodes_resource_group_name = data.azurerm_kubernetes_cluster.aks_dr.node_resource_group
-  
-  velero_namespace        = var.velero_namespace
-  velero_chart_repository = var.velero_chart_repository
-  velero_chart_version    = var.velero_chart_version
-  velero_values           = var.velero_values
-  velero_restore_mode_only           = "false"
-  velero_default_volumes_to_restic    = "true" #use restic (file copy) by default for backups (no volume snapshots)
+
+  velero_namespace                 = var.velero_namespace
+  velero_chart_repository          = var.velero_chart_repository
+  velero_chart_version             = var.velero_chart_version
+  velero_values                    = var.velero_values
+  velero_restore_mode_only         = "false"
+  velero_default_volumes_to_restic = "true" #use restic (file copy) by default for backups (no volume snapshots)
 
 
-  velero_sp_tenantID = data.azurerm_client_config.current.tenant_id 
-  velero_sp_clientID = data.azuread_service_principal.velero_sp.application_id 
-  velero_sp_clientSecret = azuread_service_principal_password.velero_sp_password.value 
+  velero_sp_tenantID     = data.azurerm_client_config.current.tenant_id
+  velero_sp_clientID     = data.azuread_service_principal.velero_sp.application_id
+  velero_sp_clientSecret = azuread_service_principal_password.velero_sp_password.value
 }
